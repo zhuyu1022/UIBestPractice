@@ -1,25 +1,16 @@
 package com.example.zhuyu.uibestpractice;
 
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
-import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,16 +20,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button sendBtn;
     private List<Msg> msglist = new ArrayList<>();
     private int type = -1;
-    private View activity_main;//activity视图
     MsgAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
-
-        activity_main = findViewById(R.id.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         editText = (EditText) findViewById(R.id.editText);
         sendBtn = (Button) findViewById(R.id.sendBtn);
@@ -48,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        //activity_main.addOnLayoutChangeListener(this);
         recyclerView.addOnLayoutChangeListener(this);
        recyclerView.requestFocus();//为防止edittext获取用户焦点，一打开界面就谈起软键盘的现象
 
@@ -123,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //通过差值判断，软键盘的弹起收起
             if (oldHigh-high>getkeyboardhigh()){
                 Toast.makeText(this, "键盘弹起", Toast.LENGTH_SHORT).show();
-
             }
             else if (high-oldHigh>getkeyboardhigh()){
                 Toast.makeText(this, "键盘收起", Toast.LENGTH_SHORT).show();
